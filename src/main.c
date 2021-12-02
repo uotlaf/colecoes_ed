@@ -22,6 +22,7 @@ int main() {
         printf("4 - Consultar um dos elementos da coleção\n");
         printf("5 - Remover algum elemento da coleção\n");
         printf("6 - Esvaziar a coleção\n");
+        printf("7 - Destruir a coleção\n");
         scanf("%d", &resposta);
         switch (resposta) { 
             case 1:
@@ -181,6 +182,19 @@ int main() {
             case 6:
                 colEsvaziar(colecao);
                 printf("Quantidade de itens: %d", colecao->quantItens);
+                break;
+            case 7:
+                if (colecao == NULL) {
+                    printf("Aloque primeiro a colecao\n");
+                    break;
+                }
+
+                if (colecao->quantItens != 0) {
+                    printf("A coleção deve estar vazia!\n");
+                    break;
+                }
+                colDestruir(colecao);
+                colecao = NULL;
                 break;
             default:
                 printf("Saindo\n");
