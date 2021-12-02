@@ -8,7 +8,6 @@
 #define TRUE 1
 #define FALSE 0
 
-
 Colecao *colCriar(int maximoDeItens) {
     Colecao *colecao;
     
@@ -108,10 +107,11 @@ void* colEsvaziar (Colecao *col) {
     if (col->quantItens <= 0)
         return NULL;
 
-    for (int i = 0; i < col->quantItens; i++) {
-        colRemove(col, col->itens[i]);
+    for (int i = 0; i <= col->quantItens; i++) {
+        colRemove(col, col->itens[0]);
     }
     colDestruir(col);
+    col = NULL;
 }
 
 #endif // COLECAO_C_
