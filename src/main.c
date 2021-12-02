@@ -5,7 +5,6 @@
 #include <stdlib.h>
 
 
-
 int main() {
     int resposta, cont = 1, maxItens, escolha;
     char nome[30];
@@ -23,8 +22,6 @@ int main() {
         printf("4 - Consultar um dos elementos da coleção\n");
         printf("5 - Remover algum elemento da coleção\n");
         printf("6 - Esvaziar a coleção\n");
-        printf("7 - Listar todos os elementos da coleção\n");
-
         scanf("%d", &resposta);
         switch (resposta) { 
             case 1:
@@ -133,6 +130,58 @@ int main() {
                 }
                 break;
 
+            case 5:
+                if (colecao == NULL) {
+                    printf("Aloque primeiro a colecao\n");
+                    break;
+                }
+
+                if (colecao->quantItens == 0) {
+                    printf("Bote algo na coleção antes!\n");
+                    break;
+                }
+
+                printf("Você deseja procurar por:\n");
+                printf("1 - Nome\n");
+                printf("2 - Idade\n");
+                printf("3 - Nota\n");
+                scanf("%d", &escolha);
+
+                switch (escolha) {
+                    case 1:
+                        printf("Digite o nome a procurar: ");
+                        scanf("%s", nome);
+                        aluno = colProcura(colecao, (void*)nome, cmpString);
+                        break;
+                    case 2:
+                        printf("Digite a idade a procurar: ");
+                        scanf("%d", &resposta);
+                        aluno = colProcura(colecao, (void*)&resposta, cmpInt);
+                        break;
+                    case 3:
+                        printf("Digite a nota a procurar: ");
+                        scanf("%f", &nota);
+                        aluno = colProcura(colecao, (void*)&nota, cmpFloat);
+                }
+
+                if (aluno != NULL) {
+                    printf("Você deseja remover esse objeto:\n");
+                    printf("Nome: %s\n", aluno->nome);
+                    printf("Idade: %d", aluno->idade);
+                    printf("Nota: %.2f\n", aluno->nota);
+                    printf("Digite 1 para apagar e outro número para cancelar\n");
+
+                    scanf("%d", &escolha);
+                    switch(escolha) {
+                        case 1:
+                            colRemove(colecao, aluno);
+                    }
+                }
+                break;
+            case 6:
+                colEsvaziar(colecao);
+                printf("Quantidade de itens: %d", colecao->quantItens);
+                break;
             default:
                 printf("Saindo\n");
                 cont=0;
@@ -143,5 +192,4 @@ int main() {
         getchar(); // Espera a pessoa digitar ENTER
 
     }while (cont);
-
 }
