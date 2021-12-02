@@ -1,11 +1,13 @@
 #include "colecao.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifndef COLECAO_C_
 #define COLECAO_C_
 
 #define TRUE 1
 #define FALSE 0
+
 
 Colecao *colCriar(int maximoDeItens) {
     Colecao *colecao;
@@ -34,8 +36,9 @@ Colecao *colCriar(int maximoDeItens) {
 
 int colInsert (Colecao *col, void* item) {
     if (col == NULL)
-        return NULL;
+        return FALSE;
     
+    // Só bota os itens dentro da coleção se ainda tiver espaço
     if (col->quantItens < col->maxItens) {
         col->itens[col->quantItens] = item;
         col->quantItens++;
@@ -45,7 +48,7 @@ int colInsert (Colecao *col, void* item) {
 }
 
 void* colRemove (Colecao *col, void* chave) {
-    int data;
+    void* data;
     if (col == NULL)
         return NULL;
 
@@ -71,15 +74,16 @@ void* colRemove (Colecao *col, void* chave) {
     }
 }
 
-void* colProcura (Colecao *col, void* chave) {
+void* colProcura (Colecao *col, void* chave, int(*cmp)(void*, void*)) {
     if (col == NULL)
         return NULL;
 
-    if (col->quantItens <= 0)
+    if (col->quantItens <= 0) // coleção deve ter algo
         return NULL;
 
     for (int i = 0; i < col->quantItens; i++) {
-        if (col->itens[i] == chave) {
+         // Retorna o objeto se a função retornou TRUE
+        if (cmp (col->itens[i], chave) == TRUE) {
             return col->itens[i];
         }
     }
@@ -91,11 +95,10 @@ void* colDestruir (Colecao *col) {
         return NULL;
 
     if (col->quantItens != 0) // col deve estar vazio
-        return FALSE;
+        return NULL;
 
     free(col->itens);
     free(col);
-    return TRUE;
 }
 
 void* colEsvaziar (Colecao *col) {
@@ -103,7 +106,7 @@ void* colEsvaziar (Colecao *col) {
         return NULL;
     
     if (col->quantItens <= 0)
-        return FALSE;
+        return NULL;
 
     for (int i = 0; i < col->quantItens; i++) {
         colRemove(col, col->itens[i]);
