@@ -65,7 +65,7 @@ int main() {
                 printf("Digite a nota do aluno: \n");
                 scanf("%f", &aluno->nota);
 
-                colInsert(colecao, (void*)aluno);
+                colInserir(colecao, (void*)aluno);
 
                 printf("Aluno %s, com idade %d e nota %.2f inserido com sucesso\n", aluno->nome, aluno->idade, aluno->nota);
                 break;
@@ -175,13 +175,12 @@ int main() {
                     scanf("%d", &escolha);
                     switch(escolha) {
                         case 1:
-                            colRemove(colecao, aluno);
+                            colRemover(colecao, aluno);
                     }
                 }
                 break;
             case 6:
                 colEsvaziar(colecao);
-                printf("Quantidade de itens: %d", colecao->quantItens);
                 break;
             case 7:
                 if (colecao == NULL) {

@@ -33,7 +33,7 @@ Colecao *colCriar(int maximoDeItens) {
     return colecao;
 }
 
-int colInsert (Colecao *col, void* item) {
+int colInserir (Colecao *col, void* item) {
     if (col == NULL)
         return FALSE;
     
@@ -46,7 +46,7 @@ int colInsert (Colecao *col, void* item) {
     return FALSE;
 }
 
-void* colRemove (Colecao *col, void* chave) {
+void* colRemover (Colecao *col, void* chave) {
     void* data;
     if (col == NULL)
         return NULL;
@@ -108,10 +108,8 @@ void* colEsvaziar (Colecao *col) {
         return NULL;
 
     for (int i = 0; i <= col->quantItens; i++) {
-        colRemove(col, col->itens[0]);
+        colRemover(col, col->itens[0]);
     }
-    colDestruir(col);
-    col = NULL;
 }
 
 #endif // COLECAO_C_

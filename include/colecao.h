@@ -10,8 +10,8 @@ typedef struct _colecao_ {
 
 Colecao *colCriar(int maximoDeItens);
 
-int   colInsert   (Colecao *col, void* item);
-void* colRemove   (Colecao *col, void* chave);
+int   colInserir   (Colecao *col, void* item);
+void* colRemover   (Colecao *col, void* chave);
 void* colProcura  (Colecao *col, void* chave, int(*cmp)(void*, void*));
 void* colDestruir (Colecao *col);
 void* colEsvaziar (Colecao *col);
