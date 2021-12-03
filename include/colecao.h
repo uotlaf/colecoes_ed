@@ -4,7 +4,6 @@
 typedef struct _colecao_ {
     int quantItens;
     int maxItens;
-    int atual;
     void**itens;
 }Colecao;
 
