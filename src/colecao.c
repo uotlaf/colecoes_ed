@@ -107,7 +107,7 @@ void* colEsvaziar (Colecao *col) {
     if (col->quantItens <= 0)
         return NULL;
 
-    for (int i = 0; i <= col->quantItens; i++) {
+    while (col->quantItens != 0) {
         colRemover(col, col->itens[0]);
     }
 }
