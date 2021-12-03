@@ -114,7 +114,7 @@ int main() {
                     case 2:
                         printf("Digite a idade a procurar: ");
                         scanf("%d", &resposta);
-                        aluno = colProcura(colecao, (void*)&resposta, cmpInt);
+                        aluno = colProcura(colecao, (void*)&resposta, cmpInt);  
                         break;
                     case 3:
                         printf("Digite a nota a procurar: ");
@@ -176,10 +176,20 @@ int main() {
                     switch(escolha) {
                         case 1:
                             colRemover(colecao, aluno);
+                            break;
                     }
                 }
                 break;
             case 6:
+                if (colecao == NULL) {
+                    printf("Aloque primeiro a colecao\n");
+                    break;
+                }
+
+                if (colecao->quantItens == 0) {
+                    printf("Bote algo na coleção antes!\n");
+                    break;
+                }
                 colEsvaziar(colecao);
                 break;
             case 7:
@@ -205,4 +215,8 @@ int main() {
         getchar(); // Espera a pessoa digitar ENTER
 
     }while (cont);
+
+    if (colecao != NULL) {
+        colEsvaziar(colecao);
+    }
 }
