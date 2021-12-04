@@ -23,6 +23,7 @@ int main() {
         printf("5 - Remover algum elemento da coleção\n");
         printf("6 - Esvaziar a coleção\n");
         printf("7 - Destruir a coleção\n");
+        resposta = -1;
         scanf("%d", &resposta);
         switch (resposta) { 
             case 1:
