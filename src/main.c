@@ -58,6 +58,7 @@ int main() {
                 }
                 printf("Digite o nome do aluno: ");
                 scanf("%s", aluno->nome);
+                while(getchar() != '\n'); // Limpa o stdin caso a pessoa tenha digitado um sobrenome
 
                 printf("Digite a idade do aluno: ");
                 scanf("%d", &aluno->idade);
